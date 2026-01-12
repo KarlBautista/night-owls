@@ -12,20 +12,43 @@ export const getTrendingVideos = async (req: Request, res: Response) => {
             });
         }
 
-        const response = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
+        const searchRes = await axios.get("https://www.googleapis.com/youtube/v3/search", {
             params: {
-                part: "snippet,statistics",
-                chart: "mostPopular",
-                regionCode: "PH",
+                part: "snippet",
+                q: "programming tutorials",
+                type: "video",
+                order: "viewCount",
                 maxResults: 10,
+                publishedAfter: new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString(),
                 key: youtubeApiKey
             }
         });
+        
+        const videoIds = searchRes.data.items.map((item: any) => item.id.videoId).join(",");
 
-        if (response.status === 200) {
-            console.log("youtube data fetched")
-            res.status(200).json({ success: true, data: response.data })
-        }
+        const statsRes = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
+            params: {
+                part: "snippet,statistics",
+                id: videoIds,
+                key: youtubeApiKey,
+            }
+        });
+
+        const videos = statsRes.data.items.map((video: any) => ({
+            id: video.id,
+            title: video.snippet.title,
+            thumbnail: video.snippet.thumbnails.medium.url,
+            views: video.statistics.viewCount,
+            channel: video.snippet.channelTitle,
+            url: `https://www.youtube.com/watch?v=${video.id}`,
+        }))
+
+    
+
+       res.status(200).json({ success: true, data: videos });
+
+
+        
     } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
             const status = err.response?.status ?? 500;

@@ -2,8 +2,19 @@ import { useEffect, useState } from 'react'
 import VideoBox from './VideoBox'
 import axios from "axios"
 
+interface Video {
+  id: string;
+  title: string;
+  thumbnail: string;
+  views: string;
+  channel: string;
+  url: string;
+}
+
 const Trending = () => {
-  const [vidoes, setVidoes] = useState([]);
+
+  const [videos, setVideos] = useState<Video[]>([{id: "1", title: "example", thumbnail: "example", url: "example", views: "example", channel: "karl"}]);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,7 +25,7 @@ const Trending = () => {
         if (!res.data.success) {
           throw new Error(res.data.error);
         }
-        setVidoes(res.data.data);
+        setVideos(res.data.data);
         alert("got the data");
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
@@ -26,16 +37,14 @@ const Trending = () => {
     }
     getTrendingVideos();
   }, [])
-  console.log(vidoes)
+  console.log(videos)
   return (
     <section className='mt-8 mb-10 h-auto'>
       <h1 className='text-[24px] text-white font-bold'>Trending Tutorials</h1>
       <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        <VideoBox />
-         <VideoBox />
-          <VideoBox />
-           <VideoBox />
-            <VideoBox />
+       {videos.map((video) => (
+        <VideoBox key={video.id} video={video} onSelect={() => console.log("hello")}/>
+       ))}
           
       </div>
     </section>
