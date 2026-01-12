@@ -1,6 +1,9 @@
 import React from 'react'
 
+
+
 const SearchBanner = () => {
+  
   return (
     <section className='w-full h-[40%] flex flex-col items-center gap-2'>
         <div className='w-full h-[20%] flex justify-center items-center mt-5 mb-5'>
