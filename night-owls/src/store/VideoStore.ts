@@ -32,7 +32,7 @@ export const useVideoStore = create<VideoState>((set, get) => ({
     loading: false,
     error: null,
 
-    loadInitialVideos: async (maxResults = 10) => {
+    loadInitialVideos: async (maxResults = 12) => {
         try {
             set({ loading: true, error: null, videos: [], nextPageToken: null, hasMore: true });
 
@@ -54,7 +54,7 @@ export const useVideoStore = create<VideoState>((set, get) => ({
         }
     },
 
-    loadMoreVideos: async (maxResults = 10) => {
+    loadMoreVideos: async (maxResults = 12) => {
         const { loading, hasMore, nextPageToken } = get();
         if (loading || !hasMore || !nextPageToken) return;
 

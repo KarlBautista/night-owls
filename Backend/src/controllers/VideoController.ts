@@ -15,7 +15,7 @@ export const getAllVideos = async (req: Request, res: Response) => {
         const pageToken = typeof req.query.pageToken === 'string' ? req.query.pageToken : undefined;
         const maxResultsRaw = typeof req.query.maxResults === 'string' ? req.query.maxResults : undefined;
         const maxResultsParsed = maxResultsRaw ? Number.parseInt(maxResultsRaw, 10) : NaN;
-        const maxResults = Number.isFinite(maxResultsParsed) && maxResultsParsed > 0 && maxResultsParsed <= 50 ? maxResultsParsed : 10;
+        const maxResults = Number.isFinite(maxResultsParsed) && maxResultsParsed > 0 && maxResultsParsed <= 50 ? maxResultsParsed : 12;
 
         const searchRes = await axios.get("https://www.googleapis.com/youtube/v3/search", {
             params: {
