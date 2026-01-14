@@ -1,52 +1,41 @@
-import React from 'react'
+  import React from 'react'
 
 
 
 const SearchBanner = () => {
-  
   return (
-    <section className='w-full h-[40%] flex flex-col items-center gap-2'>
-        <div className='w-full h-[20%] flex justify-center items-center mt-5 mb-5'>
-            <h1 className='text-white font-bold text-5xl text-center '>Master coding in the <span className='text-teal-300'>dark</span></h1>
+    <section className='w-full bg-[#0B1D3A] flex flex-col items-center justify-center py-24 px-4'>
+      <div className='max-w-5xl w-full text-center flex flex-col items-center gap-8'>
+        <div className='h-24 w-24 rounded-2xl bg-orange-500 flex items-center justify-center shadow-lg'>
+          <span className='text-[#0B1D3A] font-bold text-4xl' aria-hidden>
+            {'</>'}
+          </span>
         </div>
-        <div className='mb-5'>
-             <p className='text-[20px] text-[#B0B0B0] text-center'>Curated programming tutorials for night owls. Learn React, Python, and more </p>
-             <p className='text-[20px] text-[#B0B0B0] text-center'>without straining your eyes.</p>
-        </div>
-        <div className='w-full md:w-[40%] lg:w-[35%]'>
-          
-          <div className='relative w-full'>
-               <span
-              className='pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-[#B0B0B0]'
-              aria-hidden='true'
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='22'
-                height='22'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              >
-                <circle cx='11' cy='11' r='8' />
-                <path d='m21 21-4.3-4.3' />
-              </svg>
-            </span>
-            <input
-              type='text'
-              placeholder='Search Tutorials...'
-              aria-label='Search tutorials'
-              className='bg-[#1e2a38] text-[#B0B0B0] text-[20px] w-full pl-10 pr-14 py-5 rounded-full'
-            />
+        
+        <h1 className='text-white font-bold text-4xl md:text-5xl lg:text-6xl leading-tight'>
+          Master <span className='text-orange-500'>JavaScript</span> in the dark.
+        </h1>
+        
+        <p className='text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl'>
+          Curated JavaScript tutorials for night owls. From fundamentals to advanced<br className='hidden sm:block' />
+          concepts, learn at your own pace without straining your eyes.
+        </p>
 
-            
+        <div className='flex flex-wrap items-center justify-center gap-3 mt-4'>
+          <div className='flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-teal-500/30'>
+            <div className='h-2 w-2 rounded-full bg-teal-400'></div>
+            <span className='text-white text-sm font-medium'>100% JavaScript Focused</span>
+          </div>
+          <div className='px-4 py-2 rounded-full bg-white/5 border border-white/10'>
+            <span className='text-gray-300 text-sm font-medium'>Beginner Friendly</span>
+          </div>
+          <div className='px-4 py-2 rounded-full bg-white/5 border border-white/10'>
+            <span className='text-gray-300 text-sm font-medium'>Free Resources</span>
           </div>
         </div>
+      </div>
     </section>
   )
 }
 
-export default SearchBanner
+  export default SearchBanner

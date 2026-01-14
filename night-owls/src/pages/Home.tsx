@@ -1,11 +1,11 @@
 import SearchBanner from '../components/SearchBanner'
-import Trending from '../components/Trending'
+import AllVideos from '../components/AllVideos'
 
 const Home = () => {
   return (
     <div className='px-5 pb-10 md:px-10'>
       <SearchBanner />
-      <Trending />
+      <AllVideos />
     </div>
   )
 }
